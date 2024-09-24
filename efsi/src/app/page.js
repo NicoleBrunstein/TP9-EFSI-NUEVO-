@@ -11,7 +11,7 @@ export default function Login() {
   // Función para manejar la redirección al index
   const handleLoginRedirect = () => {
     if (email && password) {
-      router.push('/index');
+      router.push('/home');
     } else {
       alert('Por favor, completa ambos campos.');
     }

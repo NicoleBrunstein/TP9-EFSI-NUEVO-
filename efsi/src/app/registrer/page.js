@@ -14,7 +14,7 @@ export default function Register() {
         <input type="password" placeholder="Ingresa tu contraseña" required />
         <label>Confirmar Contraseña</label>
         <input type="password" placeholder="Confirma tu contraseña" required />
-        <button type="submit">Registrarse</button>
+        <a href="/home" class="button">Registrarse</a>
       </form>
       <p>¿Ya tienes cuenta? <Link href="/">Inicia sesión aquí</Link></p>
     </div>

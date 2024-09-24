@@ -43,7 +43,7 @@ export default function RootLayout({ children }) {
             <nav>
               <ul className="nav d-flex align-items-center">
                 <li className="nav-item">
-                  <Link href="/index" className="nav-link text-light">
+                  <Link href="/home" className="nav-link text-light">
                     Home
                   </Link>
                 </li>
