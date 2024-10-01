@@ -11,14 +11,14 @@ export default function Login() {
 
   const login = async (user, pass) => {
     try {
-      const response = await axios.post('/api/user', {
+      const response = await axios.post('http://localhost:3000/api/user/login', {
         username: user,
         password: pass
       });
-      return response.data.token; // Asumiendo que el token se encuentra aquí
+      return response.data.token; 
     } catch (error) {
       console.error('Error durante el inicio de sesión:', error);
-      throw error; // Lanza el error para manejarlo más adelante
+      throw error; 
     }
   };
 
@@ -27,7 +27,7 @@ export default function Login() {
       try {
         const token = await login(email, password);
         console.log('Inicio de sesión exitoso, token:', token);
-        // Aquí puedes guardar el token o manejarlo como prefieras
+        //  guardar el token 
         router.push('/home');
       } catch (error) {
         alert('Error de inicio de sesión. Verifica tus credenciales.');

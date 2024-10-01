@@ -55,7 +55,7 @@ export default function RootLayout({ children }) {
                 {/* Mostrar cuando el usuario está logueado */}
                 <li className="nav-item">
                   <a href="/profile" className="nav-link text-light">
-                    <i className="bi bi-person-circle"></i> Juan Perez
+                    Juan Perez
                   </a>
                 </li>
                 <li className="nav-item">
