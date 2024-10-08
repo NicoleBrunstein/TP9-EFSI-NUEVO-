@@ -3,17 +3,19 @@
 import { useState } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation'; // Importa desde 'next/navigation'
+import { useRouter } from 'next/navigation';
 
 export default function Register() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
+    first_name: '',
+    last_name: '',
+    username: '',
     password: '',
     confirmPassword: ''
   });
   const [error, setError] = useState('');
-  const router = useRouter(); // Utiliza useRouter aquí
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,16 +30,23 @@ export default function Register() {
       return;
     }
 
+    setLoading(true);
+    setError(''); // Resetea el error al iniciar el registro
+
     try {
-      await axios.post('/api/user/register', {
-        username: formData.email,
+      const response = await axios.post('https://set-previously-redfish.ngrok-free.app/api/user/register', {
+        first_name: formData.first_name,
+        last_name: formData.last_name,
+        username: formData.username,
         password: formData.password,
-        first_name: formData.name,
       });
       alert('Usuario registrado con éxito');
       router.push('/'); // Redirigir a la página de login
     } catch (err) {
-      setError('Error al registrar: ' + err.response?.data?.message || err.message);
+      console.error(err); // Imprime el error en la consola para diagnóstico
+      setError('Error al registrar: ' + (err.response?.data?.message || err.message || 'Error desconocido'));
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -49,18 +58,27 @@ export default function Register() {
         <label>Nombre</label>
         <input
           type="text"
-          name="name"
+          name="first_name"
           placeholder="Ingresa tu nombre"
-          value={formData.name}
+          value={formData.first_name}
+          onChange={handleChange}
+          required
+        />
+        <label>Apellido</label>
+        <input
+          type="text"
+          name="last_name"
+          placeholder="Ingresa tu apellido"
+          value={formData.last_name}
           onChange={handleChange}
           required
         />
         <label>Email</label>
         <input
           type="email"
-          name="email"
+          name="username"
           placeholder="Ingresa tu email"
-          value={formData.email}
+          value={formData.username}
           onChange={handleChange}
           required
         />
@@ -82,10 +100,11 @@ export default function Register() {
           onChange={handleChange}
           required
         />
-        <button type="submit" className="button">Registrarse</button>
+        <button type="submit" className="button" disabled={loading}>
+          {loading ? 'Cargando...' : 'Registrarse'}
+        </button>
       </form>
       <p>¿Ya tienes cuenta? <Link href="/">Inicia sesión aquí</Link></p>
     </div>
   );
 }
-
