@@ -1,3 +1,5 @@
+'use client'
+
 import React,{createContext,useState,useEffect} from 'react';
 
 export const TokenContext = createContext();
@@ -22,7 +24,8 @@ const TokenProvider = (props) => {
         <TokenContext.Provider
             value={{
                 token,
-                saveToken                
+                saveToken,
+                isLoggedIn: !!token                
             }}
         >
             {props.children}

@@ -5,6 +5,7 @@ import Link from "next/link";
 import "./bootstrap-icons.css";
 import "./bootstrap.min.css";
 import "./globals.css";
+import TokenProvider from "@/context/TokenContext";
 
 // Fuentes locales
 const geistSans = localFont({
@@ -32,6 +33,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased d-flex flex-column min-vh-100`}
       >
+        <TokenProvider>
         {/* Encabezado con logo y menú de navegación */}
         <header className="bg-dark text-light py-3">
           <div className="container d-flex justify-content-between align-items-center">
@@ -83,6 +85,7 @@ export default function RootLayout({ children }) {
             <p>&copy; 2024 Eventos. Todos los derechos reservados.</p>
           </div>
         </footer>
+        </TokenProvider>
       </body>
     </html>
   );

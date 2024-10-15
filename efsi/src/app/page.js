@@ -1,13 +1,15 @@
 "use client";
 
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import { TokenContext } from '@/context/TokenContext';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
+  const {saveToken} = useContext(TokenContext);
 
   const login = async (user, pass) => {
     try {
@@ -28,6 +30,7 @@ export default function Login() {
         const token = await login(email, password);
         console.log('Inicio de sesión exitoso, token:', token);
         //  guardar el token 
+        saveToken(token);
         router.push('/home');
       } catch (error) {
         alert('Error de inicio de sesión. Verifica tus credenciales.');
