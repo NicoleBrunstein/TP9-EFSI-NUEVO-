@@ -1,36 +1,38 @@
 'use client'
 
-import React,{createContext,useState,useEffect} from 'react';
+import React, { createContext, useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
 
 export const TokenContext = createContext();
 
 const TokenProvider = (props) => {
-    const [token,setToken] = useState([]);    
+  const [token, setToken] = useState('');
 
-    useEffect(() => {
-        const storedToken = localStorage.getItem('token');
-
-        if(storedToken){
-            setToken(storedToken)
-        }
-    }, [])
-
-    const saveToken = (newToken)=>{
-        localStorage.setItem('token',newToken);
-        setToken(newToken)
+  useEffect(() => {
+    // Obtener el token de las cookies al cargar el contexto
+    const storedToken = Cookies.get('token');
+    if (storedToken) {
+      setToken(storedToken);
     }
+  }, []);
 
-    return (
-        <TokenContext.Provider
-            value={{
-                token,
-                saveToken,
-                isLoggedIn: !!token                
-            }}
-        >
-            {props.children}
-        </TokenContext.Provider>
-    )
-}
+  const saveToken = (newToken) => {
+    // Guardar el token en cookies
+    Cookies.set('token', newToken, { expires: 1, path: '/', sameSite: 'Lax' });
+    setToken(newToken);
+  };
+
+  return (
+    <TokenContext.Provider
+      value={{
+        token,
+        saveToken,
+        isLoggedIn: !!token
+      }}
+    >
+      {props.children}
+    </TokenContext.Provider>
+  );
+};
 
 export default TokenProvider;

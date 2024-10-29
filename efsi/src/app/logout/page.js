@@ -2,13 +2,14 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 
 export default function Logout() {
   const router = useRouter();
 
   useEffect(() => {
-    // Simulación de la lógica de logout
-    // Aquí puedes borrar tokens o limpiar estados de autenticación
+    // Borrar el token de las cookies
+    Cookies.remove('token', { path: '/' });  // Asegúrate de especificar el mismo path que al guardar la cookie
 
     // Redirigir al login después de "cerrar sesión"
     router.push('/');
