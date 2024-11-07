@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const EventDetail = ({ params }) => {
-  const { id } = params; // Usamos params para obtener el id del evento
+  const { id } = params; 
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -13,8 +13,8 @@ const EventDetail = ({ params }) => {
     const fetchEvent = async () => {
       if (id) {
         try {
-          const response = await axios.get(`http://localhost:3000/api/event/${id}`); // Cambia la URL a la de tu API
-          setEvent(response.data); // Guardamos el evento en el estado
+          const response = await axios.get(`http://localhost:3000/api/event/${id}`); 
+          setEvent(response.data); 
         } catch (err) {
           setError('Error al cargar el evento');
         } finally {

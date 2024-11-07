@@ -31,7 +31,7 @@ export default function Register() {
     }
 
     setLoading(true);
-    setError(''); // Resetea el error al iniciar el registro
+    setError(''); // vacia el error
 
     try {
       const response = await axios.post('https://set-previously-redfish.ngrok-free.app/api/user/register', {
@@ -41,9 +41,9 @@ export default function Register() {
         password: formData.password,
       });
       alert('Usuario registrado con éxito');
-      router.push('/'); // Redirigir a la página de login
+      router.push('/'); // va a la página de login
     } catch (err) {
-      console.error(err); // Imprime el error en la consola para diagnóstico
+      console.error(err); // muestra el error en la consola 
       setError('Error al registrar: ' + (err.response?.data?.message || err.message || 'Error desconocido'));
     } finally {
       setLoading(false);
