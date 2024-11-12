@@ -34,7 +34,7 @@ export default function Register() {
     setError(''); // vacia el error
 
     try {
-      const response = await axios.post('https://set-previously-redfish.ngrok-free.app/api/user/register', {
+      const response = await axios.post('http://localhost:3000/api/user/register', {
         first_name: formData.first_name,
         last_name: formData.last_name,
         username: formData.username,

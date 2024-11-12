@@ -56,11 +56,6 @@ export default function RootLayout({ children }) {
                 </li>
                 {/* Mostrar cuando el usuario está logueado */}
                 <li className="nav-item">
-                  <a href="/profile" className="nav-link text-light">
-                    Juan Perez
-                  </a>
-                </li>
-                <li className="nav-item">
                   <a href="/logout" className="nav-link text-light">
                     Cerrar sesión
                   </a>
