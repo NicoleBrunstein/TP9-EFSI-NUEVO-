@@ -6,6 +6,7 @@ import "./bootstrap-icons.css";
 import "./bootstrap.min.css";
 import "./globals.css";
 import TokenProvider from "@/context/TokenContext";
+import Navbar from "./components/Navbar";
 
 // Fuentes locales
 const geistSans = localFont({
@@ -42,26 +43,7 @@ export default function RootLayout({ children }) {
                 <img src="/images/logo.png" alt="Logo" style={{ height: '70px' }} />
               </Link>
             </div>
-            <nav>
-              <ul className="nav d-flex align-items-center">
-                <li className="nav-item">
-                  <Link href="/home" className="nav-link text-light">
-                    Home
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link href="/contacto" className="nav-link text-light">
-                    Contacto
-                  </Link>
-                </li>
-                {/* Mostrar cuando el usuario está logueado */}
-                <li className="nav-item">
-                  <a href="/logout" className="nav-link text-light">
-                    Cerrar sesión
-                  </a>
-                </li>
-              </ul>
-            </nav>
+            <Navbar />
           </div>
         </header>
 
